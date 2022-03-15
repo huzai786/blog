@@ -1,0 +1,102 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="">
+<style>
+    .profile-pic{
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+        border-radius: 50%;
+    }
+    .bt1{
+        margin-top: -2%;
+        margin-left: -1%;
+    }
+    .border-dark{
+        box-shadow: 4px 3px 30px rgb(100, 100, 100);
+        color: rgb(46, 46, 46);
+    }
+    .card{
+        border: none;
+        background-color: rgb(214, 214, 214);
+    }
+
+</style>
+
+<div class="container">
+    <br>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-3">
+            <div class="card card-body border-dark">
+                <a href="{% url 'home' %}" class="btn btn-warning bt1">&#8592; go back to home</a>
+                <hr>
+                <h3 style="text-align: center;">Profile Settings</h3>
+                <hr>
+                <img src="{{ request.user.profile.image.url }}" alt="" class="profile-pic">
+                {% if request.user == profile.user %}
+                <a href="{% url 'edit-profile' profile.id %}" class="btn btn-info bt1" style="margin-top: 1rem;">Edit Profile</a>   
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card card-body border-dark">
+                <hr>
+                <div class="row">
+                    <div class="col-md-3">
+                        <h5 class="my-2">Name:</h5>
+                    </div>
+                    <div class="col-md-9">
+                        <p class="my-2">{{ profile.name }}</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-3">
+                        <h5 class="my-2">Address:</h5>
+                    </div>
+                    <div class="col-md-9">
+                        <p class="my-2">{% if profile.address %}
+                                        {{ profile.address }}
+                                        {% else %}
+                                        <p>Edit to enter your address</p>
+                                        {% endif %}
+                        </p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-3">
+                        <h5 class="my-2">Phone no:</h5>
+                    </div>
+                    <div class="col-md-9">
+                        <p class="my-2">
+                                        {% if profile.phone_no %}
+                                        {{ profile.address }}
+                                        {% else %}
+                                        <p>Edit to enter your phone number</p>
+                                        {% endif %}</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-3">
+                        <h5 class="my-2">Bio:</h5>
+                    </div>
+                    <div class="col-md-9">
+                        <p class="my-2">{% if profile.bio %}
+                                        {{ profile.bio }}
+                                        {% else %}
+                                        <p>Edit to enter your bio</p>
+                                        {% endif %}</p>
+                    </div>
+                </div>
+                <hr>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</div>
+{% endblock content %}

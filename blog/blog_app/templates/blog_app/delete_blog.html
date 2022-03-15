@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="container">
+    <form action="" method="post">
+
+        {% csrf_token %}
+        <div class="container mt-5 border-dark rounded">
+            <p>Are you sure you want to delete "{{ object }}"?</p>
+            {{ form|crispy }}
+                <input type="submit" value="Submit" class="btn btn-danger bt1">
+                <a href="{% url 'blog-detail' object.id %}" class="btn btn-primary bt1">Go back</a>
+        </div>
+    </form>
+</div>
+{% endblock content %}

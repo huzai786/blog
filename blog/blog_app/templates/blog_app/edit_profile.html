@@ -1,0 +1,47 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+
+<style>
+    .profile-pic{
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+        border-radius: 50%;
+    }
+    .bt1{
+        margin-top: 2%;
+    }
+</style>
+
+<div class="container">
+    <br>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-3">
+            <div class="card card-body">
+                <a href="{% url 'profile' request.user.profile.id %}" class="btn btn-warning bt1 mx-1">&#8592; go back to profile</a>
+                <hr>
+                <h3 style="text-align: center;">Profile Settings</h3>
+                <hr>
+                <img src="{{ request.user.profile.image.url }}" alt="" class="profile-pic">
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card card-body">
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <input type="submit" name="Update Profile" class="btn btn-primary bt1 mx-1">
+                </form>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</div>
+
+
+{% endblock content %}

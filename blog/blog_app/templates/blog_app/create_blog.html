@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="mt-5 mx-5">
+    <a href="{% url 'home' %}"><button class="btn btn-primary bt1">Go back</button></a>
+</div>
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="container">
+        {{ form|crispy }}
+        <input type="submit" value="Save" class="btn btn-primary mx-1 bt1">
+    </div>
+</form>
+
+
+{% endblock content %}
