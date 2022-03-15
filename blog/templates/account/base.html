@@ -14,17 +14,6 @@
   <body class="main-page">
     {% block body %}
 
-    {% if messages %}
-    <div>
-      <strong>Messages:</strong>
-      <ul>
-        {% for message in messages %}
-        <li>{{message}}</li>
-        {% endfor %}
-      </ul>
-    </div>
-    {% endif %}
-
     <div class="container">
     {% block content %}
     {% endblock %}
